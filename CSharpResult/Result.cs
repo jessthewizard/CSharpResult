@@ -62,4 +62,52 @@
 		if (this.IsOk()) return defaultVal;
 		else return errItem;
 	}
+
+    public T UnwrapOrElse(Func<E, T> errFunc)
+	{
+		if (this.IsErr()) return errFunc(errItem);
+		else return okItem;
+	}
+
+	public Result<U, E> Map<U>(Func<T, U> mapFunc)
+	{
+	    if(this.IsErr()) return Result<U, E>.Err(errItem);
+	    else return Result<U, E>.Ok(mapFunc(okItem));
+	}
+
+	public Result<T, U> MapErr<U>(Func<E, U> mapFunc)
+	{
+	    if(this.IsOk()) return Result<T, U>.Ok(okItem);
+	    else return Result<T, U>.Err(mapFunc(errItem));
+	}
+
+	public U MapOr<U>(U defaultVal, Func<T, U> mapFunc)
+    {
+        if(this.IsErr()) return defaultVal;
+        else return mapFunc(okItem);
+    }
+
+    public U MapErrOr<U>(U defaultVal, Func<E, U> mapFunc)
+    {
+        if(this.IsOk()) return defaultVal;
+        else return mapFunc(errItem);
+    }
+
+    public U MapOrElse<U>(Func<T, U> mapOkFunc, Func<E, U> mapErrFunc)
+    {
+        if(this.IsErr()) return mapErrFunc(errItem);
+        else return mapOkFunc(okItem);
+    }
+
+    public void Inspect(Action<T> func)
+    {
+        if(this.IsErr()) return;
+        else func(okItem);
+    }
+
+    public void InspectErr(Action<E> func)
+    {
+        if(this.IsOk()) return;
+        else func(errItem);
+    }
 }
