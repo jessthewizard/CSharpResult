@@ -72,4 +72,16 @@
         if(this.IsNone()) return;
         else func(innerItem);
     }
+
+    public Result<T, E> OkOr<E>(E errVal)
+    {
+        if(this.IsNone()) return Result<T, E>.Err(errVal);
+        else return Result<T, E>.Ok(innerItem);
+    }
+
+    public Result<T, E> OkOrElse<E>(Func<E> errFunc)
+    {
+        if(this.IsNone()) return Result<T, E>.Err(errFunc());
+        else return Result<T, E>.Ok(innerItem);
+    }
 }

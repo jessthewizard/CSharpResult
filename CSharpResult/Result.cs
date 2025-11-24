@@ -110,4 +110,16 @@
         if(this.IsOk()) return;
         else func(errItem);
     }
+
+    public Option<T> OkToOption()
+    {
+        if(this.IsErr()) return Option<T>.None();
+        else return Option<T>.Some(okItem);
+    }
+
+    public Option<E> ErrToOption()
+    {
+        if(this.IsOk()) return Option<E>.None();
+        else return Option<E>.Some(errItem);
+    }
 }

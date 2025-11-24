@@ -105,4 +105,40 @@ public sealed class OptionTests
         var y = x.MapOrElse<string>((x) => { return "int " + x; }, () => { return "none"; });
         Assert.AreEqual("int 1", y);
     }
+
+    [TestMethod]
+    public void OkOrOption_IsNone()
+    {
+	    var x = Option<int>.None();
+
+        var y = x.OkOr<bool>(false);
+        Assert.AreEqual("Err(False)", y.ToString());
+    }
+
+    [TestMethod]
+    public void OkOrOption_IsSome()
+    {
+	    var x = Option<int>.Some(1);
+
+        var y = x.OkOr<bool>(false);
+        Assert.AreEqual("Ok(1)", y.ToString());
+    }
+
+    [TestMethod]
+    public void OkOrElseOption_IsNone()
+    {
+	    var x = Option<int>.None();
+
+        var y = x.OkOrElse<bool>(() => { return false; });
+        Assert.AreEqual("Err(False)", y.ToString());
+    }
+
+    [TestMethod]
+    public void OkOrElseOption_IsSome()
+    {
+	    var x = Option<int>.Some(1);
+
+        var y = x.OkOrElse<bool>(() => { return false; });
+        Assert.AreEqual("Ok(1)", y.ToString());
+    }
 }

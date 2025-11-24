@@ -176,4 +176,40 @@ public sealed class ResultTests
         var y = x.MapOrElse<string>((x) => { return "int " + x; }, (x) => { return "string " + x; });
         Assert.AreEqual("int 1", y);
     }
+
+    [TestMethod]
+    public void OkToOptionResult_IsOk()
+    {
+	    var x = Result<int, string>.Ok(1);
+
+        var y = x.OkToOption();
+        Assert.AreEqual(Option<int>.Some(1).ToString(), y.ToString());
+    }
+
+    [TestMethod]
+    public void OkToOptionResult_IsErr()
+    {
+	    var x = Result<int, string>.Err("Test");
+
+        var y = x.OkToOption();
+        Assert.AreEqual(Option<int>.None().ToString(), y.ToString());
+    }
+
+    [TestMethod]
+    public void ErrToOptionResult_IsOk()
+    {
+	    var x = Result<int, string>.Ok(1);
+
+        var y = x.ErrToOption();
+        Assert.AreEqual(Option<string>.None().ToString(), y.ToString());
+    }
+
+    [TestMethod]
+    public void ErrToOptionResult_IsErr()
+    {
+	    var x = Result<int, string>.Err("Test");
+
+        var y = x.ErrToOption();
+        Assert.AreEqual(Option<string>.Some("Test").ToString(), y.ToString());
+    }
 }
