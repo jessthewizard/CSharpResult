@@ -38,4 +38,28 @@
 	{
 		return state + "(" + (this.IsOk() ? okItem : errItem) + ")";
 	}
+
+	public T Unwrap()
+	{
+		if (this.IsErr()) throw new InvalidOperationException();
+		else return okItem;
+	}
+
+	public E UnwrapErr()
+	{
+		if (this.IsOk()) throw new InvalidOperationException();
+		else return errItem;
+	}
+
+	public T UnwrapOr(T defaultVal)
+	{
+		if (this.IsErr()) return defaultVal;
+		else return okItem;
+	}
+
+	public E UnwrapErrOr(E defaultVal)
+	{
+		if (this.IsOk()) return defaultVal;
+		else return errItem;
+	}
 }
