@@ -4,63 +4,63 @@
 public sealed class ResultTests
 {
     [TestMethod]
-    public void ResultToString_IntOkStringErr_IsErr()
+    public void ResultToString_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 	    Assert.AreEqual("Err(Test)", x.ToString());
     }
 
     [TestMethod]
-    public void ResultToString_IntOkStringErr_IsOk()
+    public void ResultToString_IsOk()
     {
 	    var x = Result<int, string>.Ok(10);
 	    Assert.AreEqual("Ok(10)", x.ToString());
     }
 
     [TestMethod]
-    public void UnwrapResult_IntOkStringErr_Is10()
+    public void UnwrapResult_Is10()
     {
 	    var x = Result<int, string>.Ok(10);
 	    Assert.AreEqual(10, x.Unwrap());
     }
 
     [TestMethod]
-    public void UnwrapErrResult_IntOkStringErr_IsTest()
+    public void UnwrapErrResult_IsTest()
     {
 	    var x = Result<int, string>.Err("Test");
 	    Assert.AreEqual("Test", x.UnwrapErr());
     }
 
     [TestMethod]
-    public void UnwrapOrResult_IntOkStringErr_Is10()
+    public void UnwrapOrResult_Is10()
     {
 	    var x = Result<int, string>.Ok(10);
 	    Assert.AreEqual(10, x.UnwrapOr(-1));
     }
 
     [TestMethod]
-    public void UnwrapErrOrResult_IntOkStringErr_IsTest()
+    public void UnwrapErrOrResult_IsTest()
     {
 	    var x = Result<int, string>.Err("Test");
 	    Assert.AreEqual("Test", x.UnwrapErrOr(""));
     }
 
     [TestMethod]
-    public void UnwrapOrResult_IntOkStringErr_IsErr()
+    public void UnwrapOrResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 	    Assert.AreEqual(-1, x.UnwrapOr(-1));
     }
 
     [TestMethod]
-    public void UnwrapErrOrResult_IntOkStringErr_IsOk()
+    public void UnwrapErrOrResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(10);
 	    Assert.AreEqual("Ok", x.UnwrapErrOr("Ok"));
     }
 
     [TestMethod]
-    public void UnwrapErrResult_IntOkStringErr_IsOk()
+    public void UnwrapErrResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(10);
 
@@ -74,7 +74,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void UnwrapResult_IntOkStringErr_IsErr()
+    public void UnwrapResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -88,7 +88,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapResult_IntOkStringErr_IsOk()
+    public void MapResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(10);
 
@@ -97,7 +97,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapErrResult_IntOkStringErr_IsErr()
+    public void MapErrResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -106,7 +106,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapResult_IntOkStringErr_IsErr()
+    public void MapResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -115,7 +115,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapErrResult_IntOkStringErr_IsOk()
+    public void MapErrResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(10);
 
@@ -124,7 +124,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapOrResult_IntOkStringErr_IsErr()
+    public void MapOrResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -133,7 +133,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapOrResult_IntOkStringErr_IsOk()
+    public void MapOrResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(1);
 
@@ -142,7 +142,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapErrOrResult_IntOkStringErr_IsErr()
+    public void MapErrOrResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -151,7 +151,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapErrOrResult_IntOkStringErr_IsOk()
+    public void MapErrOrResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(1);
 
@@ -160,7 +160,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapOrElseResult_IntOkStringErr_IsErr()
+    public void MapOrElseResult_IsErr()
     {
 	    var x = Result<int, string>.Err("Test");
 
@@ -169,7 +169,7 @@ public sealed class ResultTests
     }
 
     [TestMethod]
-    public void MapOrElseResult_IntOkStringErr_IsOk()
+    public void MapOrElseResult_IsOk()
     {
 	    var x = Result<int, string>.Ok(1);
 
